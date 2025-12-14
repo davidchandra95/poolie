@@ -58,7 +58,7 @@ npm run dev
 ## Project Structure
 
 ```
-rideshare-app/
+web/
 ├── app/                          # Next.js app directory
 │   ├── rides/[rideId]/          # Dynamic ride details page
 │   │   └── page.tsx

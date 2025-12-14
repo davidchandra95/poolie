@@ -61,12 +61,15 @@ export class APIClient {
       return getMockSearchResults(params);
     }
 
+    // Backend expects 'origin' and 'destination' as required parameters
+    // We prioritize city over location for the main query params
+    const origin = params.originCity || params.originLocation || "";
+    const destination = params.destinationCity || params.destinationLocation || "";
+
     const queryParams = new URLSearchParams({
+      origin,
+      destination,
       date: params.date,
-      ...(params.originCity && { origin_city: params.originCity }),
-      ...(params.originLocation && { origin_location: params.originLocation }),
-      ...(params.destinationCity && { destination_city: params.destinationCity }),
-      ...(params.destinationLocation && { destination_location: params.destinationLocation }),
       ...(params.passengers && { passengers: params.passengers.toString() }),
       ...(params.type && { type: params.type }),
     });
